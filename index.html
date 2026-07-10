@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransExpress Logistics | Reliable Cargo & Transport</title>
+    <meta name="description" content="Professional logistics, cargo moving, and transport services nationwide. Fast, insured, and reliable.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #1a1a1a;
+            --primary-gold: #c5a059;
+            --hover-gold: #e0bb69;
+            --accent-purple: #9d4edd;
+            --dark-purple: #7b2cbf;
+            --bg-light: #f8f9fa;
+            --text-white: #ffffff;
+            --text-dark: #333333;
+            --text-muted: #888888;
+            --transition: all 0.3s ease;
+            --whatsapp-green: #25D366;
+        }
+
+        /* --- RESET & TYPOGRAPHY --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+            loading: lazy;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--primary-black);
+            padding: 12px 28px;
+            font-weight: 700;
+            border-radius: 50px;
+            border: 2px solid var(--primary-gold);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-gold);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-black);
+        }
+        .btn-call {
+            background-color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-call:hover {
+            background-color: var(--dark-purple);
+            border-color: var(--dark-purple);
+            transform: translateY(-2px);
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            color: #fff;
+        }
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        .logo span { color: #fff; font-weight: 300; }
+
+        .nav-links {
+            display: none;
+            gap: 25px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary-gold); }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+            z-index: 999;
+        }
+        .mobile-nav-overlay.active { transform: translateX(0); }
+        .mobile-nav-overlay a {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        .mobile-nav-overlay a:hover { color: var(--primary-gold); }
+        .close-menu {
+            position: absolute;
+            top: 25px; right: 25px;
+            color: var(--primary-gold);
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            /* Heavy duty truck on a long stretch of road */
+            background: url('https://images.unsplash.com/photo-1517963873971-8c056f9fb9f1?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 80px 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .hero h1 span { color: var(--primary-gold); }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .hero-trust-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about { padding: 60px 0; background: var(--bg-light); }
+        .about-grid {
+            display: grid;
+            gap: 30px;
+        }
+        .about-title { 
+            font-size: 2rem; 
+            margin-bottom: 20px;
+            color: var(--primary-black);
+        }
+        .about-title span { color: var(--primary-gold); }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature-item h4 { color: var(--primary-black); margin-bottom: 5px; font-size: 1rem; }
+        .feature-item p { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .about-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .about-images img {
+            border-radius: 8px;
+            object-fit: cover;
+            width: 100%;
+            height: 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .about-highlight {
+            position: absolute;
+            bottom: -10px; right: -10px;
+            background: var(--primary-gold);
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        /* --- SERVICES SECTION (Minimalist Design, No Images) --- */
+        .services { padding: 60px 0; background: #fff; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; color: var(--primary-black); }
+        .section-header h2 span { color: var(--primary-gold); }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 10px auto 0; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            border-top: 4px solid var(--primary-gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .service-card:hover { 
+            transform: translateY(-5px); 
+            border-top-color: var(--accent-purple);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+        }
+        .service-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: 2px solid var(--primary-gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+        }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-black); }
+        .service-card p { font-size: 0.9rem; color: var(--text-muted); flex: 1; }
+        .service-card a {
+            margin-top: 15px;
+            color: var(--primary-gold);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .service-card a:hover { color: var(--accent-purple); }
+
+        /* --- STATS --- */
+        .stats { background: var(--primary-black); color: #fff; padding: 50px 0; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-item h3 { font-size: 2rem; color: var(--primary-gold); }
+        .stat-item p { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+        
+        /* TESTIMONIALS */
+        .testimonial-area { padding: 20px 0 0; background: var(--bg-light); text-align: center; }
+        .testimonial-box {
+            background: var(--secondary-black);
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .testimonial-box::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-gold);
+            position: absolute;
+            top: -10px; left: 20px;
+            font-family: serif;
+        }
+        .testimonial-box p { font-style: italic; margin-bottom: 15px; }
+        .testimonial-box span { color: var(--primary-gold); font-weight: 600; }
+
+        /* --- FAQ --- */
+        .faq { padding: 60px 0; background: #fff; }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .faq-question {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+        .faq-question:hover { background: #e9ecef; }
+        .faq-question i { transition: var(--transition); font-style: normal; font-size: 1.2rem;}
+        .faq-item.active .faq-question { background: var(--primary-gold); color: #000; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 15px 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--secondary-black);
+            color: #fff;
+            padding: 40px 0 20px;
+            border-top: 3px solid var(--primary-gold);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .footer-col h4 { color: var(--primary-gold); margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-col p, .footer-col a { color: rgba(255,255,255,0.7); line-height: 2; font-size: 0.9rem; }
+        .footer-col a:hover { color: var(--primary-gold); }
+        
+        .footer-newsletter form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        .footer-newsletter input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            background: #111;
+            color: #fff;
+        }
+        .footer-newsletter button {
+            background: var(--primary-gold);
+            border: none;
+            color: #000;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .footer-copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (min-width: 600px) {
+            .services-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (min-width: 768px) {
+            .hamburger { display: none; }
+            .nav-links { display: flex; }
+            .mobile-nav-overlay.active { display: none; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero-ctas { flex-direction: row; justify-content: center; }
+            .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+            .about-highlight { display: block; }
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-images img { height: 350px; }
+        }
+        @media (min-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(4, 1fr); }
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- HEADER --- -->
+    <header>
+        <div class="container header-flex">
+            <div class="logo">Trans<span>Express</span></div>
+            <nav class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#faq">FAQs</a>
+                <a href="#" class="btn-call"><span style="font-size:1.2rem;">📞</span> Call 0702 555 093</a>
+                <a href="#" class="btn-primary">Get a Quote</a>
+            </nav>
+            <button class="hamburger" aria-label="Open Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- --- MOBILE NAV OVERLAY --- -->
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">✕</button>
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About Us</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#faq" class="mobile-link">FAQs</a>
+        <a href="#" class="btn-primary" onclick="closeMobile()">Get a Quote Now</a>
+    </div>
+
+    <!-- --- FLOATING WHATSAPP BUTTON --- -->
+    <a href="https://wa.me/254702555093" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <span class="whatsapp-icon">&#x1F4AC;</span> Book via WhatsApp
+    </a>
+
+    <main>
+        <!-- --- HERO SECTION --- -->
+        <section class="hero" id="hero">
+            <div class="hero-content container">
+                <h1>Reliable Transport.<br><span>On Time. Every Time.</span></h1>
+                <p>We provide professional logistics, cargo moving, and transport services nationwide. Your goods are safe with us.</p>
+                <div class="hero-ctas">
+                    <a href="#" class="btn-primary">Get a Quote Now &rarr;</a>
+                    <a href="#services" class="btn-secondary">Learn More</a>
+                </div>
+                <div class="hero-trust-badge">
+                    <span>⭐ ⭐ ⭐ ⭐ ⭐</span> 
+                    <span>Trusted by 250+ satisfied clients!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- ABOUT SECTION --- -->
+        <section class="about" id="about">
+            <div class="container about-grid">
+                <div class="about-text">
+                    <h2 class="about-title">Built by Experts<br><span>In Logistics</span></h2>
+                    <p>With years of experience in the transport industry, we are fully equipped to handle your cargo with the utmost care and professionalism.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <h4>✔ Years of Experience</h4>
+                            <p>Over 10 years in national logistics</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>✔ 24/7 Support</h4>
+                            <p>We are always available to help you</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>✔ Real-Time Tracking</h4>
+                            <p>Know where your cargo is at all times</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>✔ Full Insurance</h4>
+                            <p>Your goods are protected against loss</p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-secondary" style="margin-top: 10px;">Who We Are</a>
+                </div>
+                <div class="about-images">
+                    <!-- Nairobi City Skyline -->
+                    <img src="https://images.unsplash.com/photo-1575533326584-21a19f9655c7?q=80&w=600&auto=format&fit=crop" alt="Nairobi City Skyline">
+                    <!-- Mombasa Ivories / Coastal Landmark -->
+                    <img src="https://images.unsplash.com/photo-1575631130891-822abed7408f?q=80&w=600&auto=format&fit=crop" alt="Mombasa Coastal Ivories">
+                    <div class="about-highlight">40+<br>Projects</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SERVICES SECTION (No Extra Images) --- -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our <span>Services</span></h2>
+                    <p>We offer a wide range of logistics solutions tailored to your business and personal needs.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">&#128666;</div> <!-- Truck Emoji/Icon -->
+                        <h3>Road Freight</h3>
+                        <p>We transport heavy and light cargo safely using our modern fleet of trucks.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">&#128640;</div> <!-- Plane Emoji/Icon -->
+                        <h3>Express Delivery</h3>
+                        <p>Need it fast? We offer rapid courier services for packages across the country.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">&#127969;</div> <!-- House Emoji/Icon -->
+                        <h3>Home Relocation</h3>
+                        <p>Professional services to help you move your household goods safely and efficiently.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">&#128205;</div> <!-- Map Mark Emoji/Icon -->
+                        <h3>National Transport</h3>
+                        <p>We can deliver your cargo to any county across the nation without delay.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STATS & TESTIMONIALS --- -->
+        <section class="stats" id="stats">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <h3>250+</h3>
+                    <p>Satisfied Clients</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1M</h3>
+                    <p>Kilometers Traveled</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2.5K</h3>
+                    <p>Deliveries Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99%</h3>
+                    <p>On-Time Delivery</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="testimonial-area container">
+            <div class="testimonial-box">
+                <p>"Their service is outstanding! I sent cargo from Nairobi to Mombasa and it arrived before the promised time. TransExpress is my go-to choice."</p>
+                <span>- James K., Business Owner</span>
+            </div>
+        </div>
+
+        <!-- --- FAQ SECTION --- -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked <span>Questions</span></h2>
+                    <p>Everything you need to know before using our services.</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            Is my cargo insured during transit?
+                            <i>+</i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we provide comprehensive insurance for all your shipments. In the unlikely event of a loss, you will receive full compensation.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How can I track my current cargo?
+                            <i>+</i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can call our offices or check the status online using the tracking code provided to you upon dispatch.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How long does delivery take from Nairobi to Mombasa?
+                            <i>+</i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Standard road freight usually takes between 8 to 10 hours. We offer express options for an additional fee if you need it sooner.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- --- FOOTER --- -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col footer-newsletter">
+                <h4>Subscribe to Updates</h4>
+                <p>Get the latest rates and service news delivered straight to your inbox.</p>
+                <form>
+                    <input type="email" placeholder="Enter your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#">Road Freight</a></li>
+                    <li><a href="#">Express Delivery</a></li>
+                    <li><a href="#">Home Relocation</a></li>
+                    <li><a href="#">National Transport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 Nairobi, Kenya</p>
+                <p>📞 0702 555 093</p>
+                <p>💬 WhatsApp: 0702 555 093</p>
+                <p>📱 M-Pesa Paybill: 0702 555 093</p>
+                <p>✉️ info@transexpress.co.ke</p>
+            </div>
+        </div>
+        <div class="container footer-copyright">
+            &copy; 2026 TransExpress Logistics. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- --- JAVASCRIPT --- -->
+    <script>
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburger = document.querySelector('.hamburger');
+        const closeBtn = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        function closeMobile() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        hamburger.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', closeMobile);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMobile));
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) { item.classList.add('active'); }
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
